@@ -20,6 +20,7 @@ migrate = Migrate(app, db)
 
 # Blueprint Registration
 from app.auth import auth
+from app.alerts import alerts
 app.register_blueprint(auth, url_prefix='/auth')
-
+app.register_blueprint(alerts, url_prefix='/alerts')
 from app import routes

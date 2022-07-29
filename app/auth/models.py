@@ -9,12 +9,16 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(70), unique=True)
     password_hash = db.Column(db.String(120))
+    alerts = db.relationship('Alert', backref='user')
 
     def set_password(self, passw):
         self.password_hash = generate_password_hash(passw)
 
     def check_password(self, passw):
         return check_password_hash(self.password_hash, passw)
+
+    def __repr__(self):
+        return f"<User {self.email.split('@')[0]}>"
 
 def token_required(f):
     @wraps(f)
