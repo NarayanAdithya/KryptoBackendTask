@@ -16,6 +16,7 @@ elif os.environ.get('environment') == 'Production':
 
 # Database Configuration
 db = SQLAlchemy(app)
+print(app.config['SQLALCHEMY_DATABASE_URI'])
 migrate = Migrate(app, db)
 
 # Blueprint Registration

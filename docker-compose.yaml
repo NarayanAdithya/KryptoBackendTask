@@ -1,0 +1,27 @@
+version: '3'
+services:
+ broker-rabbitmq:
+   image: "rabbitmq:3-management"
+   ports:
+     - "15672:15672"
+   environment:
+     - RABBITMQ_DEFAULT_USER=user
+     - RABBITMQ_DEFAULT_PASS=password
+ db-postgres:
+   image: "postgres:latest"
+   ports:
+     - "5444:5432"
+   environment:
+     - POSTGRES_USER=user
+     - POSTGRES_PASSWORD=pass
+ api:
+   build:
+     context: .
+     dockerfile: ./Dockerfile
+   ports:
+    - "8000:8000"
+   environment:
+    - ENVIRONMENT=developement
+    - DB_URI=postgresql://user:pass@localhost:5444
+   depends_on:
+    - db-postgres
