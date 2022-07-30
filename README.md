@@ -81,7 +81,7 @@ Requests to the API will create alerts:
 ## Examples
 
 
-1. Making an invalid login request
+ Making an invalid login request
    
  
 
@@ -91,19 +91,9 @@ Requests to the API will create alerts:
 
 <br>
 <br>
-2. Making a simple check across multiple repo's for multiple package version
-   
-   ```sh
-   python Krypto.py
-   ```
 
-   The resultant output  is as follows:
 
-<div align="center">
-<img src="images/output_dat_ex2.png"  >
-</div>
-
-3. Making an account and retrieving the token
+ Making an account and retrieving the token
    
    
 <div align="center">
