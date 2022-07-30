@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 if __name__ == '__main__':
     credentials = pika.PlainCredentials('user', 'password')
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost', port=15672, credentials=credentials))
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost', credentials=credentials))
     channel = connection.channel()
     channel.queue_declare(queue='task_queue', durable=True)
 
