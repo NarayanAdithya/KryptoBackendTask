@@ -80,70 +80,60 @@ Requests to the API will create alerts:
 
 ## Examples
 
-Let the input file in every example be [Data.csv](https://github.com/dyte-submissions/dyte-vit-2022-NarayanAdithya/blob/main/Data.csv):
-<div align="center">
-  <img src="images/input_dat.png" alt="input_dat" >
-</div>
 
-<br>
-<br>
-1. Making a simple check across multiple repo's for single package version
+ Making an invalid login request
    
-   ```sh
-   python cli.py -i Data.csv axios@0.22.3
-   ```
-
-   The resultant output file output.csv is as follows:
+ 
 
 <div align="center">
-<img src="images/output_dat_ex1.png" alt="output_dat" >
+<img src="imgs/invalidlog.png" alt="output_dat" >
 </div>
 
 <br>
 <br>
-2. Making a simple check across multiple repo's for multiple package version
+
+
+ Making an account and retrieving the token
    
-   ```sh
-   python cli.py -i Data.csv axios@0.22.3 express@5.8.4
-   ```
-
-   The resultant output file output.csv is as follows:
-
-<div align="center">
-<img src="images/output_dat_ex2.png" alt="output_dat" >
-</div>
-We can see that when the package doesnt exist in package.json the tool automatically assings True to version verification so that it doesn't get committed in case the `-update` flag was present.
-<br>
-<br>
-3. Making a simple check across multiple repo's for multiple package version and making the pull request
    
-   ```sh
-   python cli.py -i Data.csv axios@0.22.3 express@5.8.4 -update -branch main
-   ```
-  Code Snippet:
 <div align="center">
-<img src="images/code_snippet.png" alt="output_dat" >
+<img src="imgs/register.png"  >
 </div>
 
-   The resultant output file output.csv is as follows:
-
+Making the Alert
 <div align="center">
-<img src="images/pull_request_output.png"  alt="output_dat" >
-</div>
-We can see that when the package doesnt exist in package.json the tool automatically assings True to version verification so that it doesn't get committed in case the `-update` flag was present.
-
-The Pull requests were made as follows:
-<div align="center">
-<img src="images/example_pr.png"  alt="output_dat" >
+<img src="imgs/createalert.png" >
 </div>
 
-Similary for the other repositories too...
-<br>
-<br>
+Fetching Alerts
+<div align="center">
+<img src="imgs/fetch.png"  >
+</div>
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+Email Triggered for Alert
+<div align="center">
+<img src="imgs/email Triggered by scheduler.png"  >
+</div>
 
+Email Triggered By Mailing Service which was received from RabbitMQ
+<div align="center">
+<img src="imgs/emailreceivedatmailer.png"  >
+</div>
 
+Updated Database
+<div align="center">
+<img src="imgs/updateddb.png"  >
+</div>
+
+## How to Run
+- Setup a virtual environment and then run `pip install -r requirements.txt` in root folder 
+- Start PostgreSQL service with username as user and password as pass. If you have an existing server then just create an environment variable `DB_URI` as  `postgres://user:password@localhost:port`
+- For running main server set environment variable `FLASK_APP` as `Krypto.py`, while running the first time run the following commands `flask db init`, `flask db migrate`, `flask db upgrade`
+- Now use `python Krypto.py` the server will start and the API is accessible at port 8000
+- Start the RabbitMQ service using `docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management`
+- Now cd into scheduler service and start that service using `python scheduler.py`, this service wil fetch untriggered alerts and check if they have to be triggered, in that case a request is placed on the rabbit mq broker.
+- Now cd into mailer folder and start the flask_mail.py service. This service listens to the RabbitMQ broker and processes or consumes the requests as they come in.
+- The request is then printed onto the console.
 
 <!-- ROADMAP -->
 ## Tasks Done
