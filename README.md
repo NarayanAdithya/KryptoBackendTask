@@ -100,11 +100,6 @@ Requests to the API will create alerts:
 <img src="imgs/register.png"  >
 </div>
 
-<div align="center">
-<img src="imgs/login.png"   >
-</div>
-
-
 Making the Alert
 <div align="center">
 <img src="imgs/createalert.png" >
@@ -120,6 +115,25 @@ Email Triggered for Alert
 <img src="imgs/email Triggered by scheduler.png"  >
 </div>
 
+Email Triggered By Mailing Service which was received from RabbitMQ
+<div align="center">
+<img src="imgs/emailreceivedatmailer.png"  >
+</div>
+
+Updated Database
+<div align="center">
+<img src="imgs/updateddb.png"  >
+</div>
+
+## How to Run
+- Setup a virtual environment and then run `pip install -r requirements.txt` in root folder 
+- Start PostgreSQL service with username as user and password as pass. If you have an existing server then just create an environment variable `DB_URI` as  `postgres://user:password@localhost:port`
+- For running main server set environment variable `FLASK_APP` as `Krypto.py`, while running the first time run the following commands `flask db init`, `flask db migrate`, `flask db upgrade`
+- Now use `python Krypto.py` the server will start and the API is accessible at port 8000
+- Start the RabbitMQ service using `docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management`
+- Now cd into scheduler service and start that service using `python scheduler.py`, this service wil fetch untriggered alerts and check if they have to be triggered, in that case a request is placed on the rabbit mq broker.
+- Now cd into mailer folder and start the flask_mail.py service. This service listens to the RabbitMQ broker and processes or consumes the requests as they come in.
+- The request is then printed onto the console.
 
 <!-- ROADMAP -->
 ## Tasks Done
