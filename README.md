@@ -34,6 +34,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+<div align="center">
+<img src="imgs/krypto.drawio.png" alt="output_dat" >
+</div>
+
+
 Developed using the Flask Framework and other flask extensions. The system I have developed consists of 3 servers. The first server handling the API requests and the other two servers handling the Mailing and Scheduler for checking the coin prices with the alerts. THe system makes use of PostGresQL and RabbitMQ to be more scalable. Since I am not that comfortable with docker and due to time constraints I was not able to setup the docker-compose.yml in time. 
 
 ### Build With
