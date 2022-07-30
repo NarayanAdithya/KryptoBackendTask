@@ -80,23 +80,13 @@ Requests to the API will create alerts:
 
 ## Examples
 
-Let the input file in every example be [Data.csv](https://github.com/dyte-submissions/dyte-vit-2022-NarayanAdithya/blob/main/Data.csv):
-<div align="center">
-  <img src="images/input_dat.png" alt="input_dat" >
-</div>
 
-<br>
-<br>
-1. Making a simple check across multiple repo's for single package version
+1. Making an invalid login request
    
-   ```sh
-   python cli.py -i Data.csv axios@0.22.3
-   ```
-
-   The resultant output file output.csv is as follows:
+ 
 
 <div align="center">
-<img src="images/output_dat_ex1.png" alt="output_dat" >
+<img src="imgs/invalidlog.png" alt="output_dat" >
 </div>
 
 <br>
@@ -104,45 +94,41 @@ Let the input file in every example be [Data.csv](https://github.com/dyte-submis
 2. Making a simple check across multiple repo's for multiple package version
    
    ```sh
-   python cli.py -i Data.csv axios@0.22.3 express@5.8.4
+   python Krypto.py
    ```
 
-   The resultant output file output.csv is as follows:
+   The resultant output  is as follows:
 
 <div align="center">
-<img src="images/output_dat_ex2.png" alt="output_dat" >
+<img src="images/output_dat_ex2.png"  >
 </div>
-We can see that when the package doesnt exist in package.json the tool automatically assings True to version verification so that it doesn't get committed in case the `-update` flag was present.
-<br>
-<br>
-3. Making a simple check across multiple repo's for multiple package version and making the pull request
+
+3. Making an account and retrieving the token
    
-   ```sh
-   python cli.py -i Data.csv axios@0.22.3 express@5.8.4 -update -branch main
-   ```
-  Code Snippet:
+   
 <div align="center">
-<img src="images/code_snippet.png" alt="output_dat" >
+<img src="imgs/register.png"  >
 </div>
 
-   The resultant output file output.csv is as follows:
-
 <div align="center">
-<img src="images/pull_request_output.png"  alt="output_dat" >
-</div>
-We can see that when the package doesnt exist in package.json the tool automatically assings True to version verification so that it doesn't get committed in case the `-update` flag was present.
-
-The Pull requests were made as follows:
-<div align="center">
-<img src="images/example_pr.png"  alt="output_dat" >
+<img src="imgs/login.png"   >
 </div>
 
-Similary for the other repositories too...
-<br>
-<br>
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+Making the Alert
+<div align="center">
+<img src="imgs/createalert.png" >
+</div>
 
+Fetching Alerts
+<div align="center">
+<img src="imgs/fetch.png"  >
+</div>
+
+Email Triggered for Alert
+<div align="center">
+<img src="imgs/email Triggered by scheduler.png"  >
+</div>
 
 
 <!-- ROADMAP -->
